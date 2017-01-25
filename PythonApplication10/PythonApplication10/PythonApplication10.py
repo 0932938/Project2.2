@@ -80,6 +80,8 @@ MedalGold_speler_4 = pygame.transform.scale(MedalGold_speler_4, Medal_resize)
 #players
 playerturn = ['1','2','3','4','5','6']
 
+beginroll_pause = True
+
 ###definitions
 
 def updatetime():
@@ -141,6 +143,7 @@ def beginroll_uitkomst(z,x,y):
 
 #begin
 def beginroll():
+    
     a = random.choice(playerturn)
     print (a)
     playerturn.remove(a)
@@ -177,6 +180,18 @@ def beginroll():
     else:
         print("Speler 4 begint")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         MedalGold4()
+
+    while beginroll_pause:
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        button("Continue",  325,300,150,50,dark_red,light_red,beginroll_unpause)
+
+        pygame.display.update()
+        clock.tick(15)  
 
 #verplaatsing richting
 def steen():
@@ -245,6 +260,10 @@ def paused():
 def unpause():
     global pause
     pause = False
+
+def beginroll_unpause():
+    global beginroll_pause
+    beginroll_pause = False
 
 #main game loop
 def game_loop():
