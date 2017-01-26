@@ -19,9 +19,6 @@ P4Health = 5
 bg = pygame.image.load("eurimast.jpg")
 bg = pygame.transform.scale(bg, (850,510))
 
-player_turn = 0
-#player_moves wordt de dobbelsteen worp uitkomst
-player_moves = 2
 
 class Player(pygame.sprite.Sprite):
     change_x = 0
@@ -40,31 +37,39 @@ class Player(pygame.sprite.Sprite):
 
 
     def update(self):
+        #move up and down
         self.rect.x += self.change_x
         self.rect.y += self.change_y
 
-        if not (0 < self.rect.y < 450):
-            player1.rect.x = 180
-            player1.rect.y = 440
+        if not (0 < self.rect.y < 480):
+            player1.rect.x = 150
+            player1.rect.y = 450
         # if not (0 < player2.rect.y < 450):
-            player2.rect.x = 150
-            player2.rect.y = 440
+            player2.rect.x = 180
+            player2.rect.y = 450
+
+            player3.rect.x = 210
+            player3.rect.y = 450
+
+            player4.rect.x = 240
+            player4.rect.y = 450
+
+
         if self.rect.x < 80:
             self.rect.x = 210
-        if self.rect.x > 211:
+        if self.rect.x > 221:
             self.rect.x = 90
 
 
 
 class Wall(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
-        super(type(self), self).__init__()
+        pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface([width, height])
-        self.image.fill(Blue)
-
         self.rect = self.image.get_rect()
         self.rect.y = y
         self.rect.x = x
+        self.image.fill(Red)
 
 
 pygame.init()
@@ -72,68 +77,78 @@ pygame.init()
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 pygame.display.set_caption("EUROMAST")
 sprites = pygame.sprite.Group()
-player1_list = pygame.sprite.Group()
-player2_list = pygame.sprite.Group()
 
 wall_list = pygame.sprite.Group()
 
-wall_1 = Wall(100, 5, 10, 560,)
+wall_1 = Wall(100, 7, 10, 560,)
 wall_list.add(wall_1)
 wall_1.image.fill(Red)
 sprites.add(wall_1)
 
-wall_2 = Wall(130, 5, 10, 560)
+wall_2 = Wall(130, 7, 10, 560)
 wall_list.add(wall_2)
+wall_1.image.fill(Blue)
 sprites.add(wall_2)
 
-wall_3 = Wall(160, 5, 10, 560)
+wall_3 = Wall(160, 7, 10, 560)
 wall_list.add(wall_3)
 wall_3.image.fill(Yellow)
 sprites.add(wall_3)
 
-wall_4 = Wall(190, 5, 10, 560)
+wall_4 = Wall(190, 7, 10, 560)
 wall_list.add(wall_4)
 wall_4.image.fill(Green)
 sprites.add(wall_4)
 
-wall_5 = Wall(220, 5, 10, 560)
+wall_5 = Wall(220, 7, 10, 560)
 wall_list.add(wall_5)
 wall_5.image.fill(Red)
 sprites.add(wall_5)
                                 # (x,y)
-pygame.draw.line(bg, Black, (0, 390), (300, 390))
-pygame.draw.line(bg, Black, (0, 350), (300, 350))
-pygame.draw.line(bg, (0, 0, 255), (0, 280), (300, 280))
+pygame.draw.line(bg, Blue, (0, 450), (300, 450))
+pygame.draw.line(bg, Blue, (0, 425), (300, 425))
+pygame.draw.line(bg, Blue, (0, 400), (300, 400))
 
-pygame.draw.line(bg, (0, 0, 255), (0, 390), (300, 390))
-pygame.draw.line(bg, (0, 0, 255), (0, 350), (300, 350))
-pygame.draw.line(bg, (0, 0, 255), (0, 280), (300, 280))
+pygame.draw.line(bg, Blue, (0, 375), (300, 375))
+pygame.draw.line(bg, Blue, (0, 350), (300, 350))
+pygame.draw.line(bg, Blue, (0, 325), (300, 325))
 
-pygame.draw.line(bg, (0, 0, 255), (0, 50), (300, 50))
-pygame.draw.line(bg, (0, 0, 255), (0, 30), (300, 30))
-pygame.draw.line(bg, (0, 0, 255), (0, 10), (300, 10))
+pygame.draw.line(bg, Blue, (0, 300), (300, 300))
+pygame.draw.line(bg, Blue, (0, 275), (300, 275))
+pygame.draw.line(bg, Blue, (0, 250), (300, 250))
+
+pygame.draw.line(bg, Blue, (0, 225), (300, 225))
+pygame.draw.line(bg, Blue, (0, 200), (300, 200))
+pygame.draw.line(bg, Blue, (0, 175), (300, 175))
+
+pygame.draw.line(bg, Blue, (0, 150), (300, 150))
+pygame.draw.line(bg, (0, 0, 255), (0, 125), (300, 125))
+pygame.draw.line(bg, (0, 0, 255), (0, 100), (300, 100))
+pygame.draw.line(bg, Black, (0, 75), (300, 75))
 
 
 
+# cord = pygame.rect.get_pos()
+# def collide(self, player1,player2):
+#     if player1.rect.y[cord] == player2.rect.y[cord] and player2.rect.x[cord] == player2.rect.x[cord] :
+#         player2.rect.y -= 13
+#         player2.rect.x -= 13
 
-def collide(self, player1,player2):
-    if player1.rect.y+5 == player1.rect.y+5 and player2.rect.x+5 == player2.rect.x+5 :
-        player2.rect.y -= 13
-        player2.rect.x -= 13
+player1_list = pygame.sprite.Group()
+player2_list = pygame.sprite.Group()
 
-#player1_list = pygame.sprite.Group()
-#player2_list = pygame.sprite.Group()
-
-player1 = Player(180, 450, "avatar2_standing.png" )
+player1 = Player(150, 450, "avatar1_standing.png")
 player1_list.add(player1)
 sprites.add(player1)
 
-
-player2 = Player(155, 450, "avatar1_standing.png")
+player2 = Player(185, 450, "avatar2_standing.png")
 sprites.add(player2)
-player2_list.add(player2)
 
+player3 = Player(210, 450, "avatar3_standing.png")
+sprites.add(player3)
 
+player4 = Player(240, 450, "avatar4_standing.png")
+sprites.add(player4)
 
 font = pygame.font.SysFont('Arial', 18, False, False)
 
@@ -149,6 +164,10 @@ text1_y = screen.get_height() / 2 - text1_rect.height / 2
 
 clock = pygame.time.Clock()
 
+player_turn = 1
+#player_moves wordt de dobbelsteen worp uitkomst
+player_moves = 2
+
 done = False
 gameover = False
 while not done:
@@ -160,13 +179,17 @@ while not done:
             if event.key == pygame.K_LEFT:
                 if player_turn == 1:
                     player1.loop(-28.5, 0)
+                if player_turn == 2:
                     player2.loop(-28.5, 0)
-                print(player1.rect.x)
+                if player_turn == 3:
+                    player3.loop(-28.5, 0)
+                print(player1.rect.x, "<x,y>" ,player1.rect.y)
             elif event.key == pygame.K_RIGHT:
                 player1.loop(29, 0)
                 player2.loop(29, 0)
+                player3.loop(29, 0)
                 if player_turn == 1:
-                    while player_moves > 0:
+                    while player_moves == 1:
                         player1.loop(-28.5, 0)
                         player_moves -= 1
                         # if player1.rect.x <80:
@@ -180,36 +203,34 @@ while not done:
                         # if player2.rect.x < 80:
                         #     player2.rect.x = 210
                      # player_turn = 1
-                # elif player_turn == 3:
-                #     while player_moves > 0:
-                #         player3.loop(-28.5, 0)
-                #         player_moves -= 1
-                #         if player3.rect.x < 80:
-                #             player3.rect.x = 210
-                #     player_turn = 4
-                # elif player_turn == 4:
-                #     while player_moves > 0:
-                #         player4.loop(-28.5, 0)
-                #         player_moves -= 1
-                #         if player4.rect.x < 80:
-                #             player4.rect.x = 210
-                #     player_turn = 1
+                elif player_turn == 3:
+                    while player_moves > 0:
+                        player3.loop(-28.5, 0)
+                        player_moves -= 1
+                        if player3.rect.x < 80:
+                            player3.rect.x = 210
+                    player_turn = 4
+                elif player_turn == 4:
+                    while player_moves > 0:
+                        player4.loop(-28.5, 0)
+                        player_moves -= 1
+                        if player4.rect.x < 80:
+                            player4.rect.x = 210
+                    player_turn = 1
 
             # elif event.key == pygame.K_DOWN:
             #     player1.loop(0, 10)
-            elif event.key == pygame.K_UP:
-                player1.loop(0, -28)
-                player2.loop(0, -28)
-
-            # elif event.key == pygame.K_a:
-            #     player2.loop(-27, 0)
-            # elif event.key == pygame.K_d:
-            #     player2.loop(27,0)
-            # elif event.key == pygame.K_s:
-            #     pass #player2.
-            # elif event.key == pygame.K_w:
-            #     pass #player2.
-
+                elif event.key == pygame.K_UP:
+                    if player_turn == 1:
+                        player1.loop(0, -28)
+                        print(player_turn)
+                        player_moves += 2
+                    elif player_turn == 2:
+                        player2.loop(0, -28)
+                        player_moves += 1
+                    elif player_turn == 3:
+                        player3.loop(0, -28)
+                        player_moves += 1
 
     sprites.update()
 
