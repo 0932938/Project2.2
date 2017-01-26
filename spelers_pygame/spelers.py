@@ -6,10 +6,11 @@ Blue = (0, 0, 255)
 Red = (255, 0, 0)
 Green = (0,255,0,)
 Yellow = (255,255,0)
+Gold = (255,215,0)
 
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 500
+SCREEN_WIDTH = 820
+SCREEN_HEIGHT = 510
 
 P1Health = 5
 P2Health = 5
@@ -17,7 +18,7 @@ P3Health = 5
 P4Health = 5
 
 bg = pygame.image.load("eurimast.jpg")
-bg = pygame.transform.scale(bg, (850,510))
+bg = pygame.transform.scale(bg, (SCREEN_WIDTH,SCREEN_HEIGHT))
 
 
 class Player(pygame.sprite.Sprite):
@@ -42,23 +43,23 @@ class Player(pygame.sprite.Sprite):
         self.rect.y += self.change_y
 
         if not (0 < self.rect.y < 480):
-            player1.rect.x = 150
+            player1.rect.x = 155
             player1.rect.y = 450
         # if not (0 < player2.rect.y < 450):
-            player2.rect.x = 180
+            player2.rect.x = 184
             player2.rect.y = 450
 
-            player3.rect.x = 210
+            player3.rect.x = 95
             player3.rect.y = 450
 
-            player4.rect.x = 240
+            player4.rect.x = 125
             player4.rect.y = 450
 
-
-        if self.rect.x < 80:
-            self.rect.x = 210
-        if self.rect.x > 221:
-            self.rect.x = 90
+        #
+        # if self.rect.x < 80:
+        #     self.rect.x = 184
+        # if self.rect.x > 190:
+        #     self.rect.x = 95
 
 
 
@@ -69,8 +70,29 @@ class Wall(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.y = y
         self.rect.x = x
-        self.image.fill(Red)
+        self.image.fill(Blue)
 
+def wall_detection(player_turn):
+    if player_turn == 1:
+        if player1.rect.x < 80:
+            player1.rect.x = 184
+        if player1.rect.x > 190:
+            player1.rect.x = 95
+    if player_turn == 2:
+        if player2.rect.x < 80:
+            player2.rect.x = 184
+        if player2.rect.x > 190:
+            player2.rect.x = 95
+    if player_turn == 3:
+        if player3.rect.x < 80:
+            player3.rect.x = 184
+        if player3.rect.x > 190:
+            player3.rect.x = 95
+    if player_turn == 4:
+        if player4.rect.x < 80:
+            player4.rect.x = 184
+        if player4.rect.x > 190:
+            player4.rect.x = 95
 
 pygame.init()
 
@@ -80,51 +102,53 @@ sprites = pygame.sprite.Group()
 
 wall_list = pygame.sprite.Group()
 
-wall_1 = Wall(100, 7, 10, 560,)
+wall_1 = Wall(100, 4, 10, 560,)
 wall_list.add(wall_1)
-wall_1.image.fill(Red)
+wall_1.image.fill(Blue)
 sprites.add(wall_1)
 
-wall_2 = Wall(130, 7, 10, 560)
+wall_2 = Wall(130,4, 10, 560)
 wall_list.add(wall_2)
-wall_1.image.fill(Blue)
+wall_1.image.fill(Red)
 sprites.add(wall_2)
 
-wall_3 = Wall(160, 7, 10, 560)
+wall_3 = Wall(160, 4, 10, 560)
 wall_list.add(wall_3)
 wall_3.image.fill(Yellow)
 sprites.add(wall_3)
 
-wall_4 = Wall(190, 7, 10, 560)
+wall_4 = Wall(190, 4, 10, 560)
 wall_list.add(wall_4)
 wall_4.image.fill(Green)
 sprites.add(wall_4)
 
-wall_5 = Wall(220, 7, 10, 560)
+wall_5 = Wall(220, 4, 10, 560)
 wall_list.add(wall_5)
 wall_5.image.fill(Red)
 sprites.add(wall_5)
                                 # (x,y)
 pygame.draw.line(bg, Blue, (0, 450), (300, 450))
-pygame.draw.line(bg, Blue, (0, 425), (300, 425))
-pygame.draw.line(bg, Blue, (0, 400), (300, 400))
+pygame.draw.line(bg, Blue, (0, 422), (300, 422))
+pygame.draw.line(bg, Blue, (0, 394), (300, 394))
 
-pygame.draw.line(bg, Blue, (0, 375), (300, 375))
-pygame.draw.line(bg, Blue, (0, 350), (300, 350))
-pygame.draw.line(bg, Blue, (0, 325), (300, 325))
+pygame.draw.line(bg, Blue, (0, 366), (300, 366))
+pygame.draw.line(bg, Blue, (0, 338), (300, 338))
+pygame.draw.line(bg, Blue, (0, 310), (300, 310))
 
-pygame.draw.line(bg, Blue, (0, 300), (300, 300))
-pygame.draw.line(bg, Blue, (0, 275), (300, 275))
-pygame.draw.line(bg, Blue, (0, 250), (300, 250))
+pygame.draw.line(bg, Blue, (0, 282), (300, 282))
+pygame.draw.line(bg, Blue, (0, 254), (300, 254))
+pygame.draw.line(bg, Blue, (0, 226), (300, 226))
 
-pygame.draw.line(bg, Blue, (0, 225), (300, 225))
-pygame.draw.line(bg, Blue, (0, 200), (300, 200))
-pygame.draw.line(bg, Blue, (0, 175), (300, 175))
+pygame.draw.line(bg, Blue, (0, 198), (300, 198))
+pygame.draw.line(bg, Blue, (0, 170), (300, 170))
+pygame.draw.line(bg, Blue, (0, 142), (300, 142))
 
-pygame.draw.line(bg, Blue, (0, 150), (300, 150))
-pygame.draw.line(bg, (0, 0, 255), (0, 125), (300, 125))
-pygame.draw.line(bg, (0, 0, 255), (0, 100), (300, 100))
-pygame.draw.line(bg, Black, (0, 75), (300, 75))
+pygame.draw.line(bg, Blue, (0, 114), (300, 114))
+pygame.draw.line(bg, Blue, (0, 86), (300, 86))
+pygame.draw.line(bg, Blue, (0, 58), (300, 58))
+
+pygame.draw.line(bg, Gold, (0, 30), (300, 30),3)
+pygame.draw.line(bg, Gold, (0, 2), (300, 2),3)
 
 
 
@@ -137,17 +161,18 @@ pygame.draw.line(bg, Black, (0, 75), (300, 75))
 player1_list = pygame.sprite.Group()
 player2_list = pygame.sprite.Group()
 
-player1 = Player(150, 450, "avatar1_standing.png")
+player1 = Player(150, 450, "avatar1_standingv1.png") #gele pop
+
 player1_list.add(player1)
 sprites.add(player1)
 
-player2 = Player(185, 450, "avatar2_standing.png")
+player2 = Player(185, 450, "avatar2_standingv1.png") #groene pop
 sprites.add(player2)
 
-player3 = Player(210, 450, "avatar3_standing.png")
+player3 = Player(210, 450, "avatar3_standingv1.png") #rode pop
 sprites.add(player3)
 
-player4 = Player(240, 450, "avatar4_standing.png")
+player4 = Player(240, 450, "avatar4_standingv1.png") #blauwe pop
 sprites.add(player4)
 
 font = pygame.font.SysFont('Arial', 18, False, False)
@@ -178,59 +203,142 @@ while not done:
             #player1.key.get_focused()
             if event.key == pygame.K_LEFT:
                 if player_turn == 1:
-                    player1.loop(-28.5, 0)
-                if player_turn == 2:
-                    player2.loop(-28.5, 0)
-                if player_turn == 3:
-                    player3.loop(-28.5, 0)
-                print(player1.rect.x, "<x,y>" ,player1.rect.y)
-            elif event.key == pygame.K_RIGHT:
-                player1.loop(29, 0)
-                player2.loop(29, 0)
-                player3.loop(29, 0)
-                if player_turn == 1:
-                    while player_moves == 1:
+                    while player_moves > 0:
                         player1.loop(-28.5, 0)
                         player_moves -= 1
-                        # if player1.rect.x <80:
-                        #     player1.rect.x = 210
+                        wall_detection(player_turn)
                     player_turn = 2
                     player_moves = 2
                 elif player_turn == 2:
                     while player_moves > 0:
                         player2.loop(-28.5, 0)
                         player_moves -= 1
-                        # if player2.rect.x < 80:
-                        #     player2.rect.x = 210
-                     # player_turn = 1
+                        wall_detection(player_turn)
+                    player_turn = 3
+                    player_moves = 2
                 elif player_turn == 3:
                     while player_moves > 0:
                         player3.loop(-28.5, 0)
                         player_moves -= 1
-                        if player3.rect.x < 80:
-                            player3.rect.x = 210
+                        wall_detection(player_turn)
                     player_turn = 4
+                    player_moves = 2
                 elif player_turn == 4:
                     while player_moves > 0:
                         player4.loop(-28.5, 0)
                         player_moves -= 1
-                        if player4.rect.x < 80:
-                            player4.rect.x = 210
+                        wall_detection(player_turn)
                     player_turn = 1
+                    player_moves = 2
+                print(player1.rect.x, "<x,y>" ,player1.rect.y)
+            elif event.key == pygame.K_RIGHT:
+                if player_turn == 1:
+                    while player_moves > 0:
+                        player1.loop(29, 0)
+                        player_moves -= 1
+                        wall_detection(player_turn)
+                    player_turn = 2
+                    player_moves = 2
+                elif player_turn == 2:
+                    while player_moves > 0:
+                        player2.loop(29, 0)
+                        player_moves -= 1
+                        wall_detection(player_turn)
+                    player_turn = 3
+                    player_moves = 2
+                elif player_turn == 3:
+                    while player_moves > 0:
+                        player3.loop(29, 0)
+                        player_moves -= 1
+                        wall_detection(player_turn)
+                    player_turn = 4
+                    player_moves = 2
+                elif player_turn == 4:
+                    while player_moves > 0:
+                        player4.loop(29, 0)
+                        player_moves -= 1
+                        wall_detection(player_turn)
+                    player_turn = 1
+                    player_moves = 2
+
+                # if player_turn == 1:
+                #     while player_moves > 0:
+                #         player1.loop(29, 0)
+                #         player_moves -= 1
+                #         wall_detection(player_turn)
+                #     player_turn = 2
+                #     player_moves = 2
+                # elif player_turn == 2:
+                #     while player_moves > 0:
+                #         player2.loop(29, 0)
+                #         player_moves -= 1
+                #         if player2.rect.x < 80:
+                #             player2.rect.x = 210
+                #     player_turn = 3
+                #     player_moves = 2
+                # elif player_turn == 3:
+                #     while player_moves > 0:
+                #         player3.loop(29, 0)
+                #         player_moves -= 1
+                #         if player3.rect.x < 80:
+                #             player3.rect.x = 210
+                #     player_turn = 4
+                #     player_moves = 2
+                # elif player_turn == 4:
+                #     while player_moves > 0:
+                #         player4.loop(29, 0)
+                #         player_moves -= 1
+                #         if player4.rect.x < 80:
+                #             player4.rect.x = 210
+                #     player_turn = 1
+                #     player_moves = 2
 
             # elif event.key == pygame.K_DOWN:
             #     player1.loop(0, 10)
-                elif event.key == pygame.K_UP:
-                    if player_turn == 1:
+            elif event.key == pygame.K_UP:
+                if player_turn == 1:
+                    while player_moves > 0:
                         player1.loop(0, -28)
-                        print(player_turn)
-                        player_moves += 2
-                    elif player_turn == 2:
+                        player_moves -= 1
+                        wall_detection(player_turn)
+                    player_turn = 2
+                    player_moves = 2
+                elif player_turn == 2:
+                    while player_moves > 0:
                         player2.loop(0, -28)
-                        player_moves += 1
-                    elif player_turn == 3:
+                        player_moves -= 1
+                        wall_detection(player_turn)
+                    player_turn = 3
+                    player_moves = 2
+                elif player_turn == 3:
+                    while player_moves > 0:
                         player3.loop(0, -28)
-                        player_moves += 1
+                        player_moves -= 1
+                        wall_detection(player_turn)
+                    player_turn = 4
+                    player_moves = 2
+                elif player_turn == 4:
+                    while player_moves > 0:
+                        player4.loop(0, -28)
+                        player_moves -= 1
+                        wall_detection(player_turn)
+                    player_turn = 1
+                    player_moves = 2
+                # if player_turn == 1:
+                #     player1.loop(0, -28)
+                #     print(player_turn)
+                #     # player_moves -= 1
+                #     print(player1.rect.x, "<x Player 1 y>", player1.rect.y)
+                # elif player_turn == 2:
+                #     player2.loop(0, -28)
+                #     # player_moves -= 1
+                #     print(player2.rect.x, "<x Player 2 y>", player2.rect.y)
+                # elif player_turn == 3:
+                #     player3.loop(0, -28)
+                #     # player_moves -= 1
+                #     print(player3.rect.x, "<x Player 3 y>", player3.rect.y)
+                #     if player_turn == 3:
+                #         player_turn = 1
 
     sprites.update()
 
