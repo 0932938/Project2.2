@@ -24,8 +24,15 @@
   <ItemGroup>
     <Compile Include="basic.py" />
     <Compile Include="Category.py" />
+    <Compile Include="Entertainmentvraag.py" />
     <Compile Include="finalinstructies.py" />
+    <Compile Include="Historyvraag.py" />
+    <Compile Include="Pregame.py" />
     <Compile Include="Pygame_main.py" />
+    <Compile Include="Sportvraag.py" />
+    <Compile Include="Techonology.py" />
+    <Compile Include="tekstding.py" />
+    <Compile Include="vraagfunc.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cursor_Move.mp3" />
